@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Travel Buddy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/success">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row mt-4 ml-4">
+            <div class="col border border-info">
+                <h3 class="display-3 text-center mb-5">Add a Trip</h3>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/create_trip" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="destination" class="col-sm-2 control-label">Destination:</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="destination" id="" class="form-control" placeholder="Destination">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="desc" class="col-sm-2 control-label">Description:</label>
+                        <div class="col-sm-9">
+                            <textarea name="desc" id="" cols="79" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="travel_start" class="col-sm-2 control-label">Travel Date From:</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="travel_start" id="" class="form-control"  placeholder="yyyy-mm-dd">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="travel_end" class="col-sm-2 control-label">Travel Date To:</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="travel_end" id="" class="form-control" placeholder="yyyy-mm-dd">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <input class="btn btn-info btn-lg form-control m-5" type="submit" value="Add">
+                    </div>
+                </form>
+            </div>
+
+           
+        </div>
+        
+    </div>
+</body>
+</html>

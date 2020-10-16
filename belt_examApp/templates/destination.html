@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Travel Buddy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/success">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="card mt-5">
+            <h5 class="card-header display-3 text-info">{{ trip_info.destination }}</h5>
+            <div class="card-body">
+              <h4 class="card-subtitle mb-3 text-primary">Planner: {{ trip_info.planned_by.name }} </h4>
+              <p class="card-text ml-1">{{ trip_info.desc }}</p>
+              
+              <h4 class="text-primary"> Travel Buddies:</h4>
+              <ul>
+                {% for user in trip_info.users_joining.all %}
+                <li>{{ user.name }}</li>
+                {% endfor %}
+              </ul>
+              
+            </div>
+              <h5 class="card-footer">{{ trip_info.travel_start}} -- {{ trip_info.travel_end}} </h5>
+        
+          </div>
+    </div>
+</body>
+</html>
