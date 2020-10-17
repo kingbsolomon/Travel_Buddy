@@ -12,7 +12,7 @@ class UserManager(models.Manager):
 
         if (len(postData['name'])<3): #will add alphanumeric validator later due to spaces
             errors['name'] = "Please Enter a Valid Name (Must Be At Least 3 Characters)"
-        if (len(postData['username'])<3) or (not postData['username'].isalpha()):
+        if (len(postData['username'])<3):
             errors['username'] = "Please Enter a Valid Username (Must Be At Least 3 Characters)"
         if user:
             if user[0].username == postData['username']:
@@ -25,7 +25,7 @@ class UserManager(models.Manager):
 
     def login_validator(self, postData):
         errors_login = {}
-        if (len(postData['username'])<3) or (not postData['username'].isalpha()):
+        if (len(postData['username'])<3):
             errors_login['username'] = "Please Enter a Valid Username (Must Be At Least 3 Characters)"
         if not self.PASSWORD_REGEX.match(postData['password']):
             errors_login['password'] = "Password must be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number, and one special character"
@@ -54,16 +54,16 @@ class TripManager(models.Manager):
 
 # Create your models here
 class User(models.Model):
-    name = models.CharField(max_length=255)
-    username = models.CharField(max_length=255, unique=True)
-    password = models.CharField(max_length=255)
+    name = models.CharField(max_length=50)
+    username = models.CharField(max_length=20, unique=True)
+    password = models.CharField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
     
 
 class Trip(models.Model):
-    destination = models.CharField(max_length=255)
+    destination = models.CharField(max_length=50)
     planned_by = models.ForeignKey(User, related_name="planner", on_delete = models.CASCADE)
     travel_start = models.DateField()
     travel_end = models.DateField()

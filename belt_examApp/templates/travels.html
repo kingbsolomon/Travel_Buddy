@@ -72,23 +72,19 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
                             <th scope="col">Destination</th>
+                            <th scope="col">Planner</th>
                             <th scope="col">Travel Start Date</th>
                             <th scope="col">Travel End Date</th>
-                            <th scope="col">Do You Want to Join?</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for item in not_my_trips %}
                         <tr class="table-danger">
-                            <td>{{item.planned_by.name}}</td>
                             <th scope="row>"><a href="/view_trip/{{item.id}}">{{item.destination}}</a></th>
+                            <td>{{item.planned_by.name}}</td>
                             <td>{{item.travel_start}}</td>
                             <td>{{item.travel_end}}</td>
-                            <th scope="row">
-                                <a href="/join/{{item.id}}">Join </a>
-                            </th>
                         </tr>
                         {% endfor %}
                         

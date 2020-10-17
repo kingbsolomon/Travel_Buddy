@@ -28,4 +28,8 @@ urlpatterns = [
     path('create_trip', views.create_trip),
     path('view_trip/<int:tripid>', views.view_trip),
     path('join/<int:tripid>', views.join_trip),
+    path('del/<int:tripid>', views.del_trip),
+    path('unjoin/<int:tripid>', views.unjoin),
+    path('edit/<int:tripid>', views.edit),
+    path('update<int:tripid>', views.update),
 ]

@@ -33,6 +33,9 @@
               
               <h4 class="text-primary"> Travel Buddies:</h4>
               <ul>
+                {% if not trip_info.users_joining.all %}
+                <li>None</li>
+                {% endif %}
                 {% for user in trip_info.users_joining.all %}
                 <li>{{ user.name }}</li>
                 {% endfor %}
@@ -42,6 +45,17 @@
               <h5 class="card-footer">{{ trip_info.travel_start}} -- {{ trip_info.travel_end}} </h5>
         
           </div>
+          <div>
+            {% if trip_status == 'planner' %}
+            <a href="/edit/{{trip_info.id}}" class="btn btn-info mt-3">Edit Trip</a>
+            <a href="/del/{{trip_info.id}}" class="btn btn-danger mt-3">Delete Trip</a>
+            {% elif trip_status == 'buddy' %}
+            <a href="/unjoin/{{trip_info.id}}" class="btn btn-danger mt-3">Un-join Trip</a>
+            {% else %}
+            <a href="/join/{{trip_info.id}}" class="btn btn-danger mt-3">Join Trip</a>
+            {% endif %}
+          </div>
+         
     </div>
 </body>
 </html>
